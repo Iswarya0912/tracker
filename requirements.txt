@@ -3,4 +3,3 @@ pandas
 plotly
 sqlalchemy
 python-dateutil
-hashlib
