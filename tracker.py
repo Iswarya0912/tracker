@@ -336,15 +336,15 @@ elif choice == "Admin":
 
     # Clear all data
     st.markdown("### Clear All Expenses")
-    if st.button("Clear ALL Expenses"):
-        confirm = st.checkbox("Confirm deletion")
-        if confirm:
+    confirm = st.checkbox("Confirm deletion", key="confirm_clear_all")
+    if confirm:
+        if st.button("Clear ALL Expenses"):
             engine = get_engine()
             with engine.begin() as conn:
                 conn.execute(text("DELETE FROM expenses WHERE user_id=:uid"), {"uid": st.session_state['user_id']})
             st.success("All your expense records cleared.")
-        else:
-            st.info("Check the box to confirm deletion.")
+    else:
+        st.info("Check the box to confirm deletion.")
 
     # Clear by date range
     st.markdown("### Delete Expenses by Date Range")
